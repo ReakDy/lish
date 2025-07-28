@@ -1,0 +1,271 @@
+/* style.css */
+
+/* 1. Global Styles & Reset */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark grey for good contrast */
+    /* Your subtle gradient background */
+    background: linear-gradient(to right, #e0f2f7, #f0f4f7);
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex; /* Use flexbox for body to push footer down */
+    flex-direction: column;
+}
+
+/* 2. Header & Navigation */
+header {
+    background-color: #ffffff; /* White background for header */
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Soft shadow */
+    position: sticky; /* Sticky header for navigation */
+    top: 0;
+    z-index: 1000; /* Ensure header stays on top */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #007bff; /* Brand color for logo */
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555; /* Neutral link color */
+    font-weight: 500;
+    transition: color 0.3s ease-in-out; /* Smooth transition for hover */
+    padding: 5px 0;
+    position: relative; /* For underline effect */
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007bff; /* Underline color */
+    transition: width 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Hover color for links */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* Expand underline on hover */
+}
+
+/* 3. Main Content Area */
+main {
+    flex-grow: 1; /* Allows main content to take up available space */
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for content */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08); /* Soft shadow for main container */
+}
+
+/* 4. Sections */
+section {
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee; /* Subtle separator */
+}
+
+section:last-child {
+    border-bottom: none; /* No separator for the last section */
+    margin-bottom: 0;
+}
+
+/* 5. Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50; /* Darker, more prominent heading color */
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 2.2em;
+    border-bottom: 2px solid #007bff; /* Underline for H2 */
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* 6. Paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* 7. Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-block; /* Allows padding to apply properly */
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* 8. Lists */
+ul {
+    list-style: disc; /* Default bullet points */
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* 9. Team Members (example for a specific section) */
+.team-members {
+    display: flex;
+    flex-wrap: wrap; /* Allows members to wrap on smaller screens */
+    gap: 20px; /* Space between members */
+    justify-content: center;
+}
+
+.member {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+    flex: 1 1 calc(33% - 40px); /* Responsive sizing: 3 per row on desktop */
+    min-width: 280px; /* Minimum width for a member card */
+}
+
+.member h3 {
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.member p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 10. Footer */
+footer {
+    background-color: #ffffff; /* White background for footer */
+    padding: 25px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow above footer */
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.social-links a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #0056b3;
+}
+
+/* 11. Responsive Design (Media Queries) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    nav {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 15px;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    section {
+        padding: 30px 15px;
+    }
+
+    .team-members {
+        flex-direction: column; /* Stack members vertically on small screens */
+        align-items: center;
+    }
+
+    .member {
+        flex: 1 1 90%; /* Take up most of the width */
+        max-width: 400px; /* Prevent it from getting too wide on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}

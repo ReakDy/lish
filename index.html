@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information System</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for a clean look */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl">
+        <h1 class="text-4xl font-bold text-center text-blue-700 mb-8">Student Management System</h1>
+
+        <!-- Section for Adding New Student -->
+        <div class="mb-10 p-6 bg-blue-50 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Add New Student</h2>
+            <form id="addStudentForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="studentId" class="block text-gray-700 text-sm font-bold mb-2">Student ID:</label>
+                    <input type="text" id="studentId" name="studentId" required
+                           class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="studentName" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                    <input type="text" id="studentName" name="studentName" required
+                           class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="studentAge" class="block text-gray-700 text-sm font-bold mb-2">Age:</label>
+                    <input type="number" id="studentAge" name="studentAge" required
+                           class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="studentMajor" class="block text-gray-700 text-sm font-bold mb-2">Major:</label>
+                    <input type="text" id="studentMajor" name="studentMajor" required
+                           class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label for="studentPhone" class="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                    <input type="tel" id="studentPhone" name="studentPhone" required
+                           class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                </div>
+                <div class="md:col-span-2 flex justify-end">
+                    <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
+                        Add Student
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Section for Displaying Student List -->
+        <div>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">Student List</h2>
+            <div id="studentListContainer" class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                    <thead>
+                        <tr class="bg-blue-100 text-blue-800 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left rounded-tl-lg">ID</th>
+                            <th class="py-3 px-6 text-left">Name</th>
+                            <th class="py-3 px-6 text-left">Age</th>
+                            <th class="py-3 px-6 text-left">Major</th>
+                            <th class="py-3 px-6 text-left rounded-tr-lg">Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody" class="text-gray-700 text-sm font-light">
+                        <!-- Sample Student Data (will be replaced by dynamic content via JavaScript) -->
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">S001</td>
+                            <td class="py-3 px-6 text-left">Alice Smith</td>
+                            <td class="py-3 px-6 text-left">20</td>
+                            <td class="py-3 px-6 text-left">Computer Science</td>
+                            <td class="py-3 px-6 text-left">012-345-6789</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">S002</td>
+                            <td class="py-3 px-6 text-left">Bob Johnson</td>
+                            <td class="py-3 px-6 text-left">22</td>
+                            <td class="py-3 px-6 text-left">Electrical Engineering</td>
+                            <td class="py-3 px-6 text-left">098-765-4321</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">S003</td>
+                            <td class="py-3 px-6 text-left">Charlie Brown</td>
+                            <td class="py-3 px-6 text-left">19</td>
+                            <td class="py-3 px-6 text-left">Mathematics</td>
+                            <td class="py-3 px-6 text-left">077-111-2222</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p id="noStudentsMessage" class="text-gray-500 text-center mt-4 hidden">No students added yet.</p>
+        </div>
+    </div>
+
+    <script>
+        // This script will handle basic form submission and display updates.
+        // In a real application, you would integrate this with a backend (like the Python code).
+
+        const addStudentForm = document.getElementById('addStudentForm');
+        const studentTableBody = document.getElementById('studentTableBody');
+        const noStudentsMessage = document.getElementById('noStudentsMessage');
+
+        // Initial student data (can be loaded from backend/storage)
+        let students = [
+            { id: 'S001', name: 'Alice Smith', age: 20, major: 'Computer Science', phone_number: '012-345-6789' },
+            { id: 'S002', name: 'Bob Johnson', age: 22, major: 'Electrical Engineering', phone_number: '098-765-4321' },
+            { id: 'S003', name: 'Charlie Brown', age: 19, major: 'Mathematics', phone_number: '077-111-2222' }
+        ];
+
+        // Function to render students in the table
+        function renderStudents() {
+            studentTableBody.innerHTML = ''; // Clear existing rows
+            if (students.length === 0) {
+                noStudentsMessage.classList.remove('hidden');
+                return;
+            } else {
+                noStudentsMessage.classList.add('hidden');
+            }
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-200 hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="py-3 px-6 text-left whitespace-nowrap">${student.id}</td>
+                    <td class="py-3 px-6 text-left">${student.name}</td>
+                    <td class="py-3 px-6 text-left">${student.age}</td>
+                    <td class="py-3 px-6 text-left">${student.major}</td>
+                    <td class="py-3 px-6 text-left">${student.phone_number}</td>
+                `;
+                studentTableBody.appendChild(row);
+            });
+        }
+
+        // Handle form submission
+        addStudentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const studentId = document.getElementById('studentId').value.trim();
+            const studentName = document.getElementById('studentName').value.trim();
+            const studentAge = parseInt(document.getElementById('studentAge').value.trim());
+            const studentMajor = document.getElementById('studentMajor').value.trim();
+            const studentPhone = document.getElementById('studentPhone').value.trim();
+
+            // Basic validation
+            if (!studentId || !studentName || isNaN(studentAge) || !studentMajor || !studentPhone) {
+                alert('Please fill in all fields correctly.'); // Using alert for simplicity, replace with custom modal in production
+                return;
+            }
+
+            // Check if student ID already exists
+            const existingStudent = students.find(s => s.id === studentId);
+            if (existingStudent) {
+                alert(`Student with ID '${studentId}' already exists. Please use a unique ID.`);
+                return;
+            }
+
+            const newStudent = {
+                id: studentId,
+                name: studentName,
+                age: studentAge,
+                major: studentMajor,
+                phone_number: studentPhone
+            };
+
+            students.push(newStudent); // Add new student to the array
+            renderStudents(); // Re-render the table
+
+            addStudentForm.reset(); // Clear the form fields
+        });
+
+        // Initial render when the page loads
+        document.addEventListener('DOMContentLoaded', renderStudents);
+    </script>
+</body>
+</html>
